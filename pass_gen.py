@@ -7,6 +7,6 @@ def gen_pass(length=16):
     return password
 
 if __name__ == "__main__":
-    # You can specify the length of the password here
-    password_length = 16  # Default length
+    
+    password_length = 16
     print(f"Generated password: {gen_pass(password_length)}")
