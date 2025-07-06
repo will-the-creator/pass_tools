@@ -10,10 +10,10 @@ def decrypt(blob, pw): return json.loads(Fernet(key(pw)).decrypt(blob).decode())
 
 if os.path.exists(FILE):
     u = input("username >: ")
-    p = input("password >: ")
+    p = getpass.getpass("password >: ")
     try:
         data = decrypt(open(FILE, "rb").read(),p)
-        if data["user"] == u and data["pass"] == p:
+        if data["user"] == u and data["pass"] == h(p):
             print("logged in")
         while True:
             c = input("[v]eiw [w]rite [q]uit >:").lower()
@@ -35,6 +35,8 @@ if os.path.exists(FILE):
 else:
     u = input("New Username >: ")
     p = getpass.getpass("new password >: ")
-    data = {"user": u, "pass": h(p), "notes": ""}
-    open(FILE, "wb").write(encrypt(data, p))
-    print("created and encryped")
+    p2 = getpass.getpass("reenter password >: ")
+    if p == p2:
+        data = {"user": u, "pass": h(p), "notes": ""}
+        open(FILE, "wb").write(encrypt(data, p))
+        print("created and encryped")
