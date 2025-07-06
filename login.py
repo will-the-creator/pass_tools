@@ -4,7 +4,7 @@ from cryptography.fernet import Fernet
 FILE = "user.enc"
 
 def key(p): return base64.urlsafe_b64encode(hashlib.sha256(p.encode()).digest())
-def h(p): retun hashlib.sha256(p.encode()).hexdigest()
+def h(p): return hashlib.sha256(p.encode()).hexdigest()
 def encrypt(data, pw): return Fernet(key(pw)).encrypt(json.dumps(data).encode())
 def decrypt(blob, pw): return json.loads(Fernet(key(pw)).decrypt(blob).encode())
 
