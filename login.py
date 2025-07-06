@@ -13,8 +13,8 @@ if os.path.exists(FILE):
     p = input("password >: ")
     try:
         data = decrypt(open(FILE, "rb").read(),p)
-        if data["user"] == u and data["pass"] == p
-        print("loggen in")
+        if data["user"] == u and data["pass"] == p:
+            print("logged in")
         while True:
             c = input("[v]eiw [w]rite [q]uit ").lower()
             if c == "v":
